@@ -1,0 +1,14 @@
+<h1>
+  Quick MEAN-stack Upvoter
+</h1>
+<hr>
+<input type="text" ng-model="text" class="new-post-text"></input>
+<button ng-click="addPost()" type="button" class="btn btn-std">Create new post</button>
+<hr>
+<ul>
+  <li ng-repeat="post in posts | orderBy : '-upvotes' "> 
+    <span class="upvotes">{{post.upvotes}}</span> {{post.text}} 
+    <span class="upvote" ng-click="increaseUpvotes(post)">^upvote this^</span> 
+    <a href="#topic/{{post._id}}">comments</a>
+  </li>
+</ul>
