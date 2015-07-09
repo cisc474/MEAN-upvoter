@@ -1,0 +1,13 @@
+{
+  "name": "reddit-example",
+  "version": "0.0.0",
+  "description": "A mini reddit clone",
+  "main": "server.js",
+  "repository": "",
+  "author": "AndyNovocin",
+  "dependencies": {
+    "express": "~3.2.4",
+    "mongoose" : "~4",
+    "body-parser" : "*"
+  }
+}

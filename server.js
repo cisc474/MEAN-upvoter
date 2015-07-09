@@ -12,15 +12,14 @@ router.use( express.bodyParser() );
 
 router.use(express.static(path.resolve(__dirname, 'client')));
 
-//this will be different for every different mongo install, I was using webfaction and mongodb listens on its own port
-mongoose.connect("mongodb://127.0.0.1:26329/test");
+mongoose.connect("mongodb://localhost/reddit");
 
-//This is the mongoose/mongo version of a table declaration
 var PostSchema = new mongoose.Schema({ 
   text: String,
   upvotes: {type: Number, default: 0},
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
 });
+
 //this is the upvoting method
 PostSchema.methods.upvote = function(cb) {
   this.upvotes += 1;
@@ -152,8 +151,7 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
 });
 
 
-//these ports are for my webfaction host, adjust accordingly
-server.listen(32013 || 3000, "0.0.0.0", function(){
+server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   var addr = server.address();
   console.log("Upvote server listening at", addr.address + ":" + addr.port);
 });
